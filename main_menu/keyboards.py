@@ -95,7 +95,7 @@ async def list_subcategories_kb(main_cut_id):
             )
         )
 
-    markup.insert(
+    markup.add(
         InlineKeyboardButton(
             text='BACK',
             callback_data=make_callbacK_data(
@@ -106,7 +106,7 @@ async def list_subcategories_kb(main_cut_id):
             )
         )
     )
-
+    return markup
 async def persona_arial():
     CURR_LEVEL = 1
     TIPE_KB = 1

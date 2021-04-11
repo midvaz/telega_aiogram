@@ -6,7 +6,7 @@ import aiogram.utils.markdown as fmt
 from aiogram import Bot,types, Dispatcher
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.dispatcher.filters import Text #  фильтр текста
-
+ 
 # for keyboards import make_callbacK_data, main_menu_kb,list_subcategories_kb
 from .keyboards import main_menu_callback_data, main_menu_kb, \
     list_subcategories_kb, persona_arial
@@ -16,7 +16,7 @@ async def start_cmd(message: Union[types.Message, types.CallbackQuery], **kwargs
         messate_text = fmt.text(
         fmt.bold("""
             Приветствую тебя, пользователь  
-            Тут я сам пытаюсь немного наворотить эту хуиту
+            Тут я сам пытаюсь сделать хорошего бота
             Надеюсь что из этого что-то выйдет
         """),
         sep='\n' 
@@ -71,7 +71,7 @@ async def out_url (
     **kwargs
     ):
     messate_text = fmt.text(
-        fmt.bold(
+        fmt.hbold(
             'http://t.me/mementologs_bot'
             ),
             sep='\n'
@@ -80,7 +80,7 @@ async def out_url (
     markup = await persona_arial()
     await call.message.edit_text(
         text=messate_text,
-        parse_mode=ParseMode.MARKDOWN,
+        parse_mode=ParseMode.HTML,
         reply_markup=markup
     )
 
