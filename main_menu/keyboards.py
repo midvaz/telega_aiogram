@@ -5,12 +5,12 @@ from aiogram.utils.callback_data import CallbackData
 from .db_worker import get_all_cat, get_all_sub_cat
 #штука необходимая для передавание по функциям походу 
 
-main_menu_callback_data = CallbackData('main_menu', 'level','tipe', 'main_cat', 'sub_cat')
+main_menu_callback_data = CallbackData('main_menu', 'level','tipe','macker', 'main_cat', 'sub_cat')
 
 def make_callbacK_data(
     level, 
     tipe,
-    macker , #если этот параметр равен особому числу, то запуск спец. сценариев
+    macker = 0, #если этот параметр равен особому числу, то запуск спец. сценариев
     main_cat = 0,
     sub_cat = 0
 ):
@@ -23,11 +23,11 @@ def make_callbacK_data(
     )
 
 async def main_menu_kb():
-    print("main_menu")
+     
     CURR_LEVEL = 0 
     TIPE_KB = 0
     MARK = 0
-    #кантейнер клавиатуры
+    #контейнер клавиатуры
 
     categories = get_all_cat()
 
@@ -44,32 +44,32 @@ async def main_menu_kb():
                 )
             )
         )
-    print("main_menu_1")
+    
     markup.add(
         InlineKeyboardButton(
             text = "Личный кабинет",
             callback_data=make_callbacK_data(
                 level=CURR_LEVEL+1,
                 tipe = TIPE_KB + 1, 
-                macker = MARK
+                # macker = MARK
             )
         )
     )
-    print("main_menu_2")
+    
     markup.add(
             InlineKeyboardButton(
                 text = "Справка",
                 url="https://www.google.com/webhp?hl=ru&sa=X&ved=0ahUKEwjX2b2zo-zvAhVshosKHcBTDwkQPAgI"
             )
     )
-    print("main_menu_3")
+    
     markup.insert(
             InlineKeyboardButton(
                 text = "Помощь",
                 url="https://t.me/Innkeeper_with_ei_bot"
             )
     )
-    print("main_menu_4")
+    
     return markup
 
 #клава второго уровня
@@ -110,7 +110,7 @@ async def list_subcategories_kb(main_cut_id):
 async def persona_arial():
     CURR_LEVEL = 1
     TIPE_KB = 1
-    MARK = 0
+    # MARK = 0
     markup = InlineKeyboardMarkup(row_width=1)
     
     markup.add(
@@ -118,9 +118,10 @@ async def persona_arial():
             text='Моя реф ссылка',
             # url = "https://t.me/Test_ghbsdhgbh_bot"
             callback_data=make_callbacK_data(
-                macker = 1,
                 tipe = TIPE_KB,
-                level=CURR_LEVEL + 1
+                level=CURR_LEVEL + 1,
+                macker = 1
+
             )
         )
     )

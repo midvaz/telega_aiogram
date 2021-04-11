@@ -15,7 +15,7 @@ async def start_cmd(message: Union[types.Message, types.CallbackQuery], **kwargs
         print("Start")
         messate_text = fmt.text(
         fmt.bold("""
-            Приветствую тебя, пользователь 
+            Приветствую тебя, пользователь  
             Тут я сам пытаюсь немного наворотить эту хуиту
             Надеюсь что из этого что-то выйдет
         """),
@@ -88,7 +88,9 @@ async def navigate(
     tipe            = callback_data.get("tipe")
     macker          = callback_data.get("macker")
     #задаем уровень. он требуется для перемещения по многоуровнему меню 
-    print(tipe)
+    print("tipe =",tipe)
+    print("macker =",macker)
+    print("level =",level)
     if tipe == '0':
         levels = {
             '0': start_cmd,
@@ -104,6 +106,7 @@ async def navigate(
             '1': sub_persona
         }
     #передаем в переменную функцию - нужного меню на нужном этапе 
+    
     current_level_function = levels[level]
     
     #запуск выбранной функции
