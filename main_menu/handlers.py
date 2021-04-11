@@ -46,7 +46,7 @@ async def sub_categories(
     **kwargs
 ):
     messate_text = '2 level'
-    markup = await list_subcategories_kb()
+    markup = await list_subcategories_kb(main_cat)
     await call.message.edit_text(
         text=messate_text,
         parse_mode=ParseMode.MARKDOWN,
@@ -70,10 +70,18 @@ async def out_url (
     call:types.CallbackQuery,
     **kwargs
     ):
-    messate_text = 'http://t.me/mementologs_bot'
+    messate_text = fmt.text(
+        fmt.bold(
+            'http://t.me/mementologs_bot'
+            ),
+            sep='\n'
+        )
+    print("я зашел в out_url")
+    markup = await persona_arial()
     await call.message.edit_text(
         text=messate_text,
         parse_mode=ParseMode.MARKDOWN,
+        reply_markup=markup
     )
 
 #основная функция навигации по сложной клавиатуре
@@ -98,13 +106,15 @@ async def navigate(
         }
     elif tipe == '1':
         if macker == '1':
+            print("ебать здарова я тут нахуй")
             levels ={
-                '2': out_url
+                "2": out_url
             }
-        levels = {
-            "0": start_cmd,
-            '1': sub_persona
-        }
+        else:
+            levels = {
+                "0": start_cmd,
+                '1': sub_persona
+            }
     #передаем в переменную функцию - нужного меню на нужном этапе 
     
     current_level_function = levels[level]
